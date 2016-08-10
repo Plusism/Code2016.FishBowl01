@@ -36,7 +36,9 @@ namespace Code2016.FishBowl01.UwpApp
 				this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-
+			// ウインドウの最小サイズを指定
+			Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().SetPreferredMinSize(new Windows.Foundation.Size(320, 500));
+			
 			// タイトルバー領域までアプリの表示を拡張する
 			var coreTitleBar = Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar;
 			coreTitleBar.ExtendViewIntoTitleBar = true;

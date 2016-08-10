@@ -41,8 +41,6 @@ namespace Code2016.FishBowl01.UwpApp
 		/// <param name="e"></param>
 		private void MusicMute_Click(object sender, RoutedEventArgs e)
 		{
-			if (this.MusicMediaElement == null)
-				return;
 			var flag = !(this.MusicMute.IsChecked ?? false);
 			this.MusicVolume.IsEnabled = flag;
 			this.MusicPlaybackRate.IsEnabled = flag;
@@ -60,8 +58,6 @@ namespace Code2016.FishBowl01.UwpApp
 		/// <param name="e"></param>
 		private void MusicButton1_Click(object sender, RoutedEventArgs e)
 		{
-			if (this.MusicMediaElement == null)
-				return;
 			_volume = 1;
 			this.MusicVolume.Value = _volume * 100;
 			this.MusicMediaElement.Volume = _volume;
@@ -74,8 +70,6 @@ namespace Code2016.FishBowl01.UwpApp
 		/// <param name="e"></param>
 		private void MusicButton2_Click(object sender, RoutedEventArgs e)
 		{
-			if (this.MusicMediaElement == null)
-				return;
 			_volume = 0.5;
 			this.MusicVolume.Value = _volume * 100;
 			this.MusicMediaElement.Volume = _volume;
@@ -88,8 +82,6 @@ namespace Code2016.FishBowl01.UwpApp
 		/// <param name="e"></param>
 		private async void MusicButton3_Click(object sender, RoutedEventArgs e)
 		{
-			if (this.MusicMediaElement == null)
-				return;
 			do
 			{
 				_volume -= 0.01;
@@ -106,8 +98,6 @@ namespace Code2016.FishBowl01.UwpApp
 		/// <param name="e"></param>
 		private async void MusicButton4_Click(object sender, RoutedEventArgs e)
 		{
-			if (this.MusicMediaElement == null)
-				return;
 			do
 			{
 				_volume -= 0.01;
@@ -124,17 +114,26 @@ namespace Code2016.FishBowl01.UwpApp
 		/// <param name="e"></param>
 		private void MusicListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			this.MusicMediaElement.Stop();
-			if (this.MusicListBox.SelectedItem == null)
+			if (this.MusicListBox.SelectedIndex == -1)
 				return;
 			var tag = (this.MusicListBox.SelectedItem as ListBoxItem).Tag;
 			this.MusicMediaElement.Source = new Uri($"ms-appx:///Assets/Music/{tag}.mp3");
-			this.MusicMediaElement.IsLooping = true;
 			this.MusicMediaElement.Play();
 		}
 
 		/// <summary>
-		/// BGM再生速度を選択時(0.5～3.0)
+		/// BGMのメディアがオープンされた後(テンポの再設定)
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MusicMediaElement_MediaOpened(object sender, RoutedEventArgs e)
+		{
+			var rate = double.Parse((string)(this.MusicPlaybackRate.SelectedItem as ComboBoxItem).Content);
+			this.MusicMediaElement.PlaybackRate = rate;
+		}
+
+		/// <summary>
+		/// BGMテンポを選択時
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -142,8 +141,7 @@ namespace Code2016.FishBowl01.UwpApp
 		{
 			if (this.MusicMediaElement == null)
 				return;
-			var item = this.MusicPlaybackRate.SelectedItem as ComboBoxItem;
-			var rate = double.Parse((string)item.Content);
+			var rate = double.Parse((string)(this.MusicPlaybackRate.SelectedItem as ComboBoxItem).Content);
 			this.MusicMediaElement.PlaybackRate = rate;
 		}
 
@@ -154,6 +152,7 @@ namespace Code2016.FishBowl01.UwpApp
 		/// <param name="e"></param>
 		private void MusicStop_Click(object sender, RoutedEventArgs e)
 		{
+			this.MusicMediaElement.Stop();
 			this.MusicListBox.SelectedIndex = -1;
 		}
 

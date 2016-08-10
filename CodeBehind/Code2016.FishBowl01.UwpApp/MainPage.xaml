@@ -107,7 +107,7 @@
 				<Button Content="おまけ3" Margin="5" Click="SoundButton_Click" Tag="monster-footstep1"/>
 			</StackPanel>
 		</StackPanel>
-		<MediaElement x:Name="MusicMediaElement"/>
+		<MediaElement x:Name="MusicMediaElement" Volume="0.5" IsLooping="True" MediaOpened="MusicMediaElement_MediaOpened"/>
 		<MediaElement x:Name="SoundMediaElement" Volume="1"/>
 	</Grid>
 </Page>
