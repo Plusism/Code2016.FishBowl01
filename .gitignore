@@ -3,3 +3,7 @@
 ################################################################################
 
 /CodeBehind/.vs
+/CodeBehind/Code2016.FishBowl01.UwpApp/bin
+/CodeBehind/Code2016.FishBowl01.UwpApp/obj
+/CodeBehind/Code2016.FishBowl01.UwpApp/Code2016.FishBowl01.UwpApp_TemporaryKey.pfx
+/CodeBehind/Code2016.FishBowl01.UwpApp/Code2016.FishBowl01.UwpApp.csproj.user

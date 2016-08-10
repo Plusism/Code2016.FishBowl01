@@ -1,0 +1,9 @@
+﻿<Application
+		x:Class="Code2016.FishBowl01.UwpApp.App"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="using:Code2016.FishBowl01.UwpApp"
+		RequestedTheme="Light">
+	<Application.Resources>
+	</Application.Resources>
+</Application>

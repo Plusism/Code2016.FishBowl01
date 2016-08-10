@@ -1,0 +1,113 @@
+﻿<Page
+		x:Class="Code2016.FishBowl01.UwpApp.MainPage"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:local="using:Code2016.FishBowl01.UwpApp"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d">
+	<Page.BottomAppBar>
+		<CommandBar>
+			<AppBarButton Icon="Globe" Label="概要">
+				<AppBarButton.Flyout>
+					<Flyout>
+						<StackPanel MaxWidth="300">
+							<TextBlock Text="著作権について" FontSize="20"/>
+							<TextBlock Text="このサンプルアプリで使用している音源は、下記サイトの著作物になります。" TextWrapping="Wrap"/>
+							<TextBlock Text="BGM音源： 01SoundEarth" Margin="0,10,0,0"/>
+							<HyperlinkButton Content="ループ>ファミコン風8bit" NavigateUri="https://01earth.net/sound/material/loop/8bit/" Margin="10,0,0,0"/>
+							<TextBlock Text="SE音源： 効果音ラボ" Margin="0,10,0,0"/>
+							<HyperlinkButton Content="戦闘[1]" NavigateUri="http://soundeffect-lab.info/sound/battle/" Margin="10,0,0,0"/>
+							<TextBlock Text="アプリについて" FontSize="20" Margin="0,15,0,0"/>
+							<TextBlock Text="制作： © 2016 Plusism."/>
+							<TextBlock Text="バージョン： 1.0.0"/>
+						</StackPanel>
+					</Flyout>
+				</AppBarButton.Flyout>
+			</AppBarButton>
+		</CommandBar>
+	</Page.BottomAppBar>
+	<Grid Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Border Grid.Row="0" Background="#FF76AC90">
+			<TextBlock Text="Code2016 BGM/SE" FontSize="20" FontWeight="ExtraBold" Margin="10,0" VerticalAlignment="Center" Foreground="White"/>
+		</Border>
+		<ListBox x:Name="MusicListBox" Grid.Row="1" Margin="10" SelectionChanged="MusicListBox_SelectionChanged">
+			<ListBoxItem Content="BGM-1 (lo_025)" Tag="lo_025"/>
+			<ListBoxItem Content="BGM-2 (lo_026)" Tag="lo_026"/>
+			<ListBoxItem Content="BGM-3 (lo_027)" Tag="lo_027"/>
+			<ListBoxItem Content="BGM-4 (lo_028)" Tag="lo_028"/>
+			<ListBoxItem Content="BGM-5 (lo_029)" Tag="lo_029"/>
+		</ListBox>
+		<Grid Grid.Row="2" Margin="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<ComboBox x:Name="MusicPlaybackRate" Grid.Column="0" Header="テンポ" VerticalAlignment="Center" SelectionChanged="MusicPlaybackRate_SelectionChanged">
+				<ComboBoxItem Content="3.0"/>
+				<ComboBoxItem Content="2.0"/>
+				<ComboBoxItem Content="1.5"/>
+				<ComboBoxItem Content="1.0" IsSelected="True"/>
+				<ComboBoxItem Content="0.5"/>
+			</ComboBox>
+			<Slider Grid.Column="1" x:Name="MusicVolume" Header="ボリューム" Value="50" Margin="5,0,0,0" ValueChanged="MusicVolume_ValueChanged"/>
+			<ToggleButton Grid.Column="2" x:Name="MusicMute" Height="40" Width="40" Margin="5,0,0,0" Padding="0" VerticalAlignment="Bottom" Click="MusicMute_Click">
+				<StackPanel>
+					<SymbolIcon Symbol="Mute"/>
+					<TextBlock Text="MUTE" FontSize="8"/>
+				</StackPanel>
+			</ToggleButton>
+			<Button Grid.Column="3" x:Name="MusicStop" Height="40" Width="40" Margin="5,0,0,0" Padding="0" VerticalAlignment="Bottom" Click="MusicStop_Click">
+				<StackPanel>
+					<SymbolIcon Symbol="Stop"/>
+					<TextBlock Text="STOP" FontSize="8"/>
+				</StackPanel>
+			</Button>
+		</Grid>
+		<Grid Grid.Row="3" Margin="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="スイッチ" VerticalAlignment="Center" Margin="5,0,0,0"/>
+			<Button x:Name="MusicButton1" Grid.Column="0" Grid.Row="1" Content="最大" Margin="5" HorizontalAlignment="Stretch" Click="MusicButton1_Click"/>
+			<Button x:Name="MusicButton2" Grid.Column="1" Grid.Row="1" Content="標準" Margin="5" HorizontalAlignment="Stretch" Click="MusicButton2_Click"/>
+			<TextBlock Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Text="フェードアウト" VerticalAlignment="Center" Margin="5,0,0,0"/>
+			<Button x:Name="MusicButton3" Grid.Column="2" Grid.Row="1" Content="速め" Margin="5" HorizontalAlignment="Stretch" Click="MusicButton3_Click"/>
+			<Button x:Name="MusicButton4" Grid.Column="3" Grid.Row="1" Content="遅め" Margin="5" HorizontalAlignment="Stretch" Click="MusicButton4_Click"/>
+		</Grid>
+		<StackPanel Grid.Row="4" Margin="10">
+			<Border BorderThickness="1" BorderBrush="#FF76AC90" Margin="0,0,0,10" Background="#FF589F6F" />
+			<StackPanel Orientation="Horizontal">
+				<Button Content="炎" Margin="5" MinWidth="50" Click="SoundButton_Click" Tag="magic-flame2"/>
+				<Button Content="氷" Margin="5" MinWidth="50" Click="SoundButton_Click" Tag="magic-ice2"/>
+				<Button Content="雷" Margin="5" MinWidth="50" Click="SoundButton_Click" Tag="magic-electron2"/>
+				<Button Content="毒" Margin="5" MinWidth="50" Click="SoundButton_Click" Tag="magic-poison1"/>
+				<Button Content="回復" Margin="5" MinWidth="50" Click="SoundButton_Click" Tag="magic-status-cure1"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Button Content="おまけ1" Margin="5" Click="SoundButton_Click" Tag="monster1"/>
+				<Button Content="おまけ2" Margin="5" Click="SoundButton_Click" Tag="monster5"/>
+				<Button Content="おまけ3" Margin="5" Click="SoundButton_Click" Tag="monster-footstep1"/>
+			</StackPanel>
+		</StackPanel>
+		<MediaElement x:Name="MusicMediaElement"/>
+		<MediaElement x:Name="SoundMediaElement" Volume="1"/>
+	</Grid>
+</Page>
