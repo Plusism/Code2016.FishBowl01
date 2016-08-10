@@ -10,11 +10,11 @@ XAML と C# を使用したプロジェクトで、コードビハインドに�
 
 サンプルで使用している音源は下記のサイトの著作物となっております。
 
-### BGM音源： 01SoundEarth
-   フリー素材＞ループ＞ファミコン風8bit
-   → https://01earth.net/sound/material/loop/8bit/
+### BGM音源： 01SoundEarth  
+ フリー素材＞ループ＞ファミコン風8bit  
+ → https://01earth.net/sound/material/loop/8bit/
 
-### SE音源： 効果音ラボ
-   戦闘[1] ファンタジー・格闘
-   → http://soundeffect-lab.info/sound/battle/
+### SE音源： 効果音ラボ  
+ 戦闘[1] ファンタジー・格闘  
+ → http://soundeffect-lab.info/sound/battle/
  
